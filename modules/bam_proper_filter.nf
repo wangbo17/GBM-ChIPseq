@@ -16,7 +16,7 @@ process BAM_PROPER_FILTER {
     def sample_id = meta.sample_id
 
     """
-    samtools view -f 3 -F 268 -@ ${task.cpus} -h -b ${bam} > ${sample_id}.filtered.bam
+    samtools view -f 3 -F 268 -@ ${task.cpus} -h -b ${bam} > ${sample_id}.bam
     # -f 3     : include only reads that are properly paired
     # -F 268   : exclude reads that are unmapped, have an unmapped mate, or are secondary alignments
     # -h       : retain the BAM header in the output
