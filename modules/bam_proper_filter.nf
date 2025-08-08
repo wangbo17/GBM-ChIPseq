@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 
 process BAM_PROPER_FILTER {
-    label 'process_medium'
+    label 'process_low'
 
     container = 'oras://community.wave.seqera.io/library/samtools:1.22--105e5e643c53f059'
     publishDir "results/samtools/proper_filter", mode: 'copy'

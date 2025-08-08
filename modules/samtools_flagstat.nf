@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 
 process SAMTOOLS_FLAGSTAT {
-    label 'process_medium'
+    label 'process_single'
 
     container = 'oras://community.wave.seqera.io/library/samtools:1.22--105e5e643c53f059'
     publishDir "results/samtools/flagstat", mode: 'copy'

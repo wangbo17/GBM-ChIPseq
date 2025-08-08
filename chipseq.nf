@@ -27,10 +27,8 @@ include { MULTIQC } from './modules/multiqc.nf'
 // Primary input
 params.input_csv = "data/samplesheet.csv"
 params.blacklist = "data/hg38-blacklist.bed"
-params.fasta = "test-datasets/chipseq/reference/genomes/hg38-chr20.fa.gz"
-params.gtf = "test-datasets/chipseq/reference/genomes/hg38-chr20-genes.gtf.gz"
-params.bowtie2 = "test-datasets/chipseq/reference/genomes/hg38-chr20-bowtie2.tar.gz"
-params.gene_bed = "test-datasets/chipseq/reference/genomes/hg38-chr20-genes.bed.gz"
+params.fasta = "data/GRCh38.primary_assembly.genome.fa"
+params.gtf = "data/gencode.v48.primary_assembly.annotation.gtf"
 params.report_id = "chipseq"
 
 log.info """\
