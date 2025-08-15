@@ -25,7 +25,7 @@ include { MULTIQC } from './modules/multiqc.nf'
  */
 
 // Primary input
-params.input_csv = "data/samplesheet.csv"
+params.input_csv = "data/samplesheet_final.csv"
 params.blacklist = "data/hg38-blacklist.bed"
 params.fasta = "data/GRCh38.primary_assembly.genome.fa"
 params.gtf = "data/gencode.v48.primary_assembly.annotation.gtf"
@@ -99,22 +99,22 @@ workflow {
 
     // DOWNSTREAM ANALYSIS
 
-    def exp_ch = SAMTOOLS_INDEX.out.bam_bai
-        .filter { meta, bam, bai -> meta.control.toString() == '0' }
-        .map { meta, bam, bai -> 
-            tuple(meta.donor_id, meta, bam, bai)
-        }
+//    def exp_ch = SAMTOOLS_INDEX.out.bam_bai
+//        .filter { meta, bam, bai -> meta.control.toString() == '0' }
+//        .map { meta, bam, bai -> 
+//            tuple(meta.donor_id, meta, bam, bai)
+//        }
 
-    def ctrl_ch = SAMTOOLS_INDEX.out.bam_bai
-        .filter { meta, bam, bai -> meta.control.toString() == '1' }
-        .map { meta, bam, bai -> 
-            tuple(meta.donor_id, bam, bai)
-        }
+//    def ctrl_ch = SAMTOOLS_INDEX.out.bam_bai
+//        .filter { meta, bam, bai -> meta.control.toString() == '1' }
+//        .map { meta, bam, bai -> 
+//            tuple(meta.donor_id, bam, bai)
+//        }
 
-    def bam_paired_ch = exp_ch.combine(ctrl_ch, by: 0)
-        .map { donor_id, exp_meta, exp_bam, exp_bai, ctrl_bam, ctrl_bai ->
-            tuple(exp_meta, exp_bam, exp_bai, ctrl_bam, ctrl_bai)
-        }
+//    def bam_paired_ch = exp_ch.combine(ctrl_ch, by: 0)
+//        .map { donor_id, exp_meta, exp_bam, exp_bai, ctrl_bam, ctrl_bai ->
+//            tuple(exp_meta, exp_bam, exp_bai, ctrl_bam, ctrl_bai)
+//        }
 
 //    bam_paired_ch.view { meta, exp_bam, exp_bai, ctrl_bam, ctrl_bai ->
 //        """
@@ -129,9 +129,9 @@ workflow {
 //        """
 //    }
 
-    MACS2_CALLPEAK_NARROW(bam_paired_ch)
+//    MACS2_CALLPEAK_NARROW(bam_paired_ch)
 
-    MACS2_CALLPEAK_BROAD(bam_paired_ch)
+//    MACS2_CALLPEAK_BROAD(bam_paired_ch)
 
     // SUMMARY REPORT GENERATION
 

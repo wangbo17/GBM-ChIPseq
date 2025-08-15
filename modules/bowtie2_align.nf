@@ -23,7 +23,8 @@ process BOWTIE2_ALIGN {
     prefix_path=${bt2_index}/\$prefix_name
 
     bowtie2 \\
-        --end-to-end --very-sensitive --no-mixed --no-discordant \\
+        --end-to-end --very-sensitive \\
+        --no-mixed --no-discordant \\
         --phred33 -I 10 -X 1000 \\
         -x \$prefix_path \\
         -1 ${read1} -2 ${read2} \\
